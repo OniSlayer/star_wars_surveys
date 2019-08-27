@@ -104,5 +104,27 @@ star_wars.head()
 ```
 
 ```{python}
+# Converting the rating related columns to numbers
+
+star_wars[star_wars.columns[9:15]] = star_wars[star_wars.columns[9:15]].astype(float)
+```
+
+```{python}
+# Changing the name of rating related columns 
+
+rating_names = {
+    'Please rank the Star Wars films in order of preference with 1 being your favorite film in the franchise and 6 being your least favorite film.': 'ranking_1',
+    'Unnamed: 10': 'ranking_2',
+    'Unnamed: 11': 'ranking_3',
+    'Unnamed: 12': 'ranking_4',
+    'Unnamed: 13': 'ranking_5',
+    'Unnamed: 14': 'ranking_6'
+}
+
+star_wars.rename(columns = rating_names, inplace = True)
+star_wars.head()
+```
+
+```{python}
 
 ```
