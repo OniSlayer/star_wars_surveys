@@ -152,5 +152,91 @@ star_wars[star_wars.columns[3:9]].sum().sort_values(ascending = False).plot.bar(
 It seems that the most seen movie is the 5th episode
 
 ```{python}
+grouped_by_genre = star_wars.groupby('Gender')
+```
+
+```{python}
+grouped_by_genre[star_wars.columns[3:9]].sum().plot.bar()
+```
+
+```{python}
+# Analyzing differences by gender
+grouped_by_genre[star_wars.columns[9:15]].mean()
+```
+
+```{python}
+grouped_by_genre[star_wars.columns[9:15]].mean().plot.bar()
+```
+
+Apparently, both male and female watch more the 5th episode of Star Wars and also both liked this episode more. Females seems to dislike the 3th episode more than men. 
+
+```{python}
+# We could also analyze the data by splitting those that are fans and those that are not fans
+grouped_by_fans = star_wars.groupby('Do you consider yourself to be a fan of the Star Wars film franchise?')
+```
+
+```{python}
+grouped_by_fans[star_wars.columns[3:9]].sum().plot.bar()
+```
+
+```{python}
+grouped_by_fans[star_wars.columns[9:15]].mean().plot.bar()
+```
+
+The most watched film by fans is the 5th and 6th episode and the mosth watched film by no fans is the 6th episode. The best rated movie is the 5th episode. There is a curious fact: Fans seems to dislike the first three episodes more than those that are no fans.
+
+```{python}
+# Analyzing data by splittin the group on those that are star trek fans and those who are not.
+group_by_startreck = star_wars.groupby('Do you consider yourself to be a fan of the Star Trek franchise?')
+```
+
+```{python}
+group_by_startreck[star_wars.columns[3:9]].sum().plot.bar()
+```
+
+```{python}
+group_by_startreck[star_wars.columns[9:15]].sum().plot.bar()
+```
+
+There seems that the times a movie has been wathed is very similar to the graph of those that are fans of star wars. Also, the rating are pretty similar between startreck fans and those that are not fans of startreck.
+
+```{python}
+# Inspecting the data by age
+grouped_by_age = star_wars.groupby('Age')
+```
+
+```{python}
+watched_by_age = grouped_by_age[star_wars.columns[3:9]].sum()
+watched_by_age
+```
+
+```{python}
+#Checking the distribution by age
+import matplotlib.pyplot as plt
+fig, axes = plt.subplots(nrows=2, ncols=2)
+watched_by_age.loc['18-29'].plot.bar(ax = axes[0,0])
+watched_by_age.loc['30-44'].plot.bar(ax = axes[0,1])
+watched_by_age.loc['45-60'].plot.bar(ax = axes[1,0])
+watched_by_age.loc['> 60'].plot.bar(ax = axes[1,1])
+```
+
+```{python}
+ranking_by_age = grouped_by_age[star_wars.columns[9:15]].mean()
+ranking_by_age
+```
+
+```{python}
+fig, axes = plt.subplots(nrows = 2, ncols = 2)
+ranking_by_age.loc['18-29'].plot.bar(ax = axes[0,0])
+ranking_by_age.loc['30-44'].plot.bar(ax = axes[0,1])
+ranking_by_age.loc['45-60'].plot.bar(ax = axes[1,0])
+ranking_by_age.loc['> 60'].plot.bar(ax = axes[1,1])
+```
+
+People between 18 and 29 have a pretty much distributed way of watching all the episodes. As age increases, people tend to watch the 5th and 6th episodes more than the others, probably because they have seen them all and just rewatch those they liked (this is consistent with the fact that the 5th and 6th episodes have the higher ratings). 
+
+Nevertheless, older people seem to enjoy the first and second episode more than younger people, but dislike the 3th episode the most. 
+
+```{python}
 
 ```
