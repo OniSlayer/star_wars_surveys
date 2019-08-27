@@ -139,5 +139,18 @@ star_wars[star_wars.columns[9:15]].mean().sort_values().plot.bar()
 The most liked movie seems to be the fifth one from star wars.
 
 ```{python}
+# Getting the number of people that has seen each movie
+star_wars[star_wars.columns[3:9]].sum().sort_values(ascending = False)
+```
+
+```{python}
+# Plotting the number of people that has seen each movie
+
+star_wars[star_wars.columns[3:9]].sum().sort_values(ascending = False).plot.bar()
+```
+
+It seems that the most seen movie is the 5th episode
+
+```{python}
 
 ```
