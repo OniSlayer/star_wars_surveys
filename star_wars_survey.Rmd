@@ -17,5 +17,67 @@ jupyter:
 This proyect is about analyzing star wars related surveys with a focus on cleaning and wrangling with the data
 
 ```{python}
+# !ls data
+```
+
+```{python}
+# Reading the star wars data
+import pandas as pd
+star_wars = pd.read_csv('data/star_wars.csv', encoding= 'ISO-8859-1')
+```
+
+```{python}
+pd.set_option('display.max_columns', 500)
+```
+
+```{python}
+# Exploratory analysis of the data
+star_wars.head()
+```
+
+```{python}
+# Inspecting the attributes on the relation
+star_wars.columns
+```
+
+```{python}
+# There is one emtpy value that has a null in the RespondentID field
+# This row is removed
+star_wars = star_wars[star_wars['RespondentID'].notnull()]
+```
+
+```{python}
+# The'Have you seen any of the 6 films in the Star Wars franchise?' column and the 
+# 'Do you consider yourself to be a fan of the Star Wars film franchise?' column are key
+
+star_wars['Have you seen any of the 6 films in the Star Wars franchise?'].value_counts(dropna = False)
+```
+
+```{python}
+star_wars['Do you consider yourself to be a fan of the Star Wars film franchise?'].value_counts(dropna = False)
+```
+
+```{python}
+# The conversion of the 'Yes' and 'No' values to booleans can be made with the s.map method and a 
+# dictionary
+
+yn_dict = {
+    'Yes': True,
+    'No': False
+}
+
+star_wars['Do you consider yourself to be a fan of the Star Wars film franchise?'] = star_wars['Do you consider yourself to be a fan of the Star Wars film franchise?'].map(yn_dict)
+star_wars['Have you seen any of the 6 films in the Star Wars franchise?'] = star_wars['Have you seen any of the 6 films in the Star Wars franchise?'].map(yn_dict)
+```
+
+```{python}
+star_wars['Have you seen any of the 6 films in the Star Wars franchise?'].value_counts(dropna = False)
+```
+
+```{python}
+star_wars['Do you consider yourself to be a fan of the Star Wars film franchise?'].value_counts(dropna = False)
+```
+
+```{python}
 
 ```
