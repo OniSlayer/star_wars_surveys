@@ -79,5 +79,30 @@ star_wars['Do you consider yourself to be a fan of the Star Wars film franchise?
 ```
 
 ```{python}
+# Convering the values of columns 3 to 9 to booleans
+
+movies = star_wars.columns[3:9]
+
+for movie in movies:
+    star_wars[movie] = star_wars[movie].notna()
+    print(star_wars[movie].value_counts(dropna= False))
+```
+
+```{python}
+# Renaming the seen movies related attributes
+seen_movie_dict = {
+    'Which of the following Star Wars films have you seen? Please select all that apply.' : 'seen_1',
+    'Unnamed: 4': 'seen_2',
+    'Unnamed: 5': 'seen_3',
+    'Unnamed: 6': 'seen_4',
+    'Unnamed: 7': 'seen_5',
+    'Unnamed: 8': 'seen_6'
+}
+
+star_wars = star_wars.rename(columns = seen_movie_dict)
+star_wars.head()
+```
+
+```{python}
 
 ```
