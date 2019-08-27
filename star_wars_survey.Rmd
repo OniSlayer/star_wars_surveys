@@ -126,5 +126,18 @@ star_wars.head()
 ```
 
 ```{python}
+# Inspecting the column with the highest average ranking
+
+star_wars[star_wars.columns[9:15]].mean()
+```
+
+```{python}
+# Plotting the rankings from each movie
+star_wars[star_wars.columns[9:15]].mean().sort_values().plot.bar()
+```
+
+The most liked movie seems to be the fifth one from star wars.
+
+```{python}
 
 ```
